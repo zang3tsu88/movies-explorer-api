@@ -1,24 +1,16 @@
 const router = require('express').Router();
+const userController = require('../controllers/users');
 const NotFoundError = require('../errors/NotFoundError');
+const MESSAGES = require('../utils/constants');
+const auth = require('../middlewares/auth');
 
-router.get('/', (req, res) => {
-  res.send({ message: 'Responce received from router' });
-});
-router.post('/signup', (req, res) => {
-  res.send({ message: 'post /signup' });
-});
-router.post('/signin', (req, res) => {
-  res.send({ message: 'post /signin' });
-});
+router.post('/signup', userController.createUser);
+router.post('/signin', userController.loginUser);
 
-// Защитить эти роуты авторизацией:
-router.get('/users/me', (req, res) => {
-  res.send({ message: 'get /users/me' });
-});
+router.use(auth);
 
-router.patch('/users/me', (req, res) => {
-  res.send({ message: 'patch /users/me' });
-});
+router.get('/users/me', userController.getUser);
+router.patch('/users/me', userController.updateUser);
 
 router.get('/movies', (req, res) => {
   res.send({ message: 'get /movies' });
@@ -33,7 +25,7 @@ router.delete('/movies/:id', (req, res) => {
 });
 
 router.use('*', (req, res, next) => {
-  next(new NotFoundError('Запрашиваемая страница не существует.'));
+  next(new NotFoundError(MESSAGES.PAGE_NOT_FOUND));
 });
 
 module.exports = router;

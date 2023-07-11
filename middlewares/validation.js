@@ -1,4 +1,6 @@
-const { celebrate, Joi, errors, Segments } = require('celebrate');
+const {
+  celebrate, Joi, errors, Segments,
+} = require('celebrate');
 
 // {
 //   [Segments.BODY]: Joi.object().keys({
