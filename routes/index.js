@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const userController = require('../controllers/users');
+const movieController = require('../controllers/movies');
 const NotFoundError = require('../errors/NotFoundError');
 const MESSAGES = require('../utils/constants');
 const auth = require('../middlewares/auth');
@@ -12,17 +13,9 @@ router.use(auth);
 router.get('/users/me', userController.getUser);
 router.patch('/users/me', userController.updateUser);
 
-router.get('/movies', (req, res) => {
-  res.send({ message: 'get /movies' });
-});
-
-router.post('/movies', (req, res) => {
-  res.send({ message: 'post /movies' });
-});
-
-router.delete('/movies/:id', (req, res) => {
-  res.send({ message: 'post /movies' });
-});
+router.get('/movies', movieController.getMovies);
+router.post('/movies', movieController.createMovie);
+router.delete('/movies/:_id', movieController.deleteMovie);
 
 router.use('*', (req, res, next) => {
   next(new NotFoundError(MESSAGES.PAGE_NOT_FOUND));
