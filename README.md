@@ -1,11 +1,30 @@
 # movies-explorer-api
 
+## Overview
+
+This repo builds a backend part of the diploma project for a [Yandex Practicum](https://practicum.yandex.ru/) web development course.
+
+## API Built with:
+
+- NodeJS
+- Express
+- MongoDB
+- Middleware / Helpers:
+  - celebrate/Joi validation
+  - jwt
+  - bcrypt
+  - cors
+  - helmet
+  - rate-limiter
+
+## Locations:
 - IP: 158.160.104.241
 - Frontend: promovies.nomoredomains.work
 - Backend: api.promovies.nomoredomains.work
 
 
-Backend movie API accepts following movie object with **required** fields.
+### For testing purposes:
+Backend movie API accepts following movie object with **required** fields. So here is one to use.
 ```json
 {
   "country": "United States",
