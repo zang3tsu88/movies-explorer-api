@@ -13,5 +13,3 @@ module.exports = {
   MOVIE_CREATED: 'Фильм успешно создан.',
   MOVIE_DELETED: 'Фильм удален.',
 };
-
-module.exports.URL_REGEX = /(https?:\/\/)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/;

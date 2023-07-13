@@ -1,5 +1,6 @@
 const { celebrate, Joi, Segments } = require('celebrate');
-const { URL_REGEX } = require('../utils/constants');
+const isURL = require('validator/lib/isURL');
+const MESSAGES = require('../utils/constants');
 
 const validationCreateUser = celebrate({
   [Segments.BODY]: Joi.object().keys({
@@ -23,6 +24,13 @@ const validationUpdateUser = celebrate({
   }),
 });
 
+const method = (value, helpers) => {
+  if (isURL(value)) {
+    return value;
+  }
+  return helpers.message(MESSAGES.URL_ERROR);
+};
+
 const validationCreateMovie = celebrate({
   [Segments.BODY]: Joi.object().keys({
     country: Joi.string().required(),
@@ -30,9 +38,9 @@ const validationCreateMovie = celebrate({
     duration: Joi.number().integer().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(URL_REGEX),
-    trailerLink: Joi.string().required().pattern(URL_REGEX),
-    thumbnail: Joi.string().required().pattern(URL_REGEX),
+    image: Joi.string().required().custom(method, 'custom url validation'),
+    trailerLink: Joi.string().required().custom(method, 'custom url validation'),
+    thumbnail: Joi.string().required().custom(method, 'custom url validation'),
     movieId: Joi.number().integer().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
