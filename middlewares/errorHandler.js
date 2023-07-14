@@ -4,7 +4,6 @@ module.exports = (err, req, res, next) => {
     message: statusCode === 500
       ? 'На сервере произошла ошибка'
       : message,
-    stack: err.stack,
   });
 
   next();
