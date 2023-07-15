@@ -18,7 +18,7 @@ This repo builds a backend part of the diploma project for a [Yandex Practicum](
   - rate-limiter
 
 ## Locations:
-- IP: 158.160.104.241
+- IP: 158.160.100.240
 - Frontend: promovies.nomoredomains.work
 - Backend: api.promovies.nomoredomains.work
 
@@ -38,5 +38,12 @@ Backend movie API accepts following movie object with **required** fields. So he
   "movieId": 123,
   "nameRU": "Пила",
   "nameEN": "Saw"
+}
+```
+```json
+{
+    "email": "test@mail.com",
+    "password": "123123123",
+    "name": "Testerman"
 }
 ```
