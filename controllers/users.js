@@ -61,6 +61,11 @@ const updateUser = (req, res, next) => {
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new BadRequestError(MESSAGES.INCORRECT_DATA));
       }
+
+      if (err.name === 'MongoServerError' && err.code === 11000) { // duplicate key error
+        return next(new ConflictError(MESSAGES.EMAIL_ALREADY_EXISTS));
+      }
+
       return next(err);
     });
 };
