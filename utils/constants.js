@@ -12,4 +12,7 @@ module.exports = {
   AUTHORIZATION_REQUIRED: 'Необходимо авторизоваться',
   MOVIE_CREATED: 'Фильм успешно создан.',
   MOVIE_DELETED: 'Фильм удален.',
+  INTERNAL_SERVER_ERROR: 'На сервере произошла ошибка',
+  MONGOOSE_CONNECTION_SUCCESS: 'Connected to DB!',
+  MONGOOSE_CONNECTION_FAIL: 'DB connection error!',
 };

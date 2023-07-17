@@ -9,6 +9,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 const { PORT_CFG, DB_CFG } = require('./utils/config');
+const MESSAGES = require('./utils/constants');
 
 const app = express();
 
