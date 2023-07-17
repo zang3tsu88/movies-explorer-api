@@ -9,7 +9,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 const { PORT_CFG, DB_CFG } = require('./utils/config');
-const MESSAGES = require('./utils/constants');
+// const MESSAGES = require('./utils/constants');
 
 const app = express();
 
@@ -30,3 +30,7 @@ mongoose.connect(DB_CFG)
   .catch(() => process.stdout.write('DB connection error!\n'));
 
 app.listen(PORT_CFG, () => process.stdout.write(`Listening on port: ${PORT_CFG}\n`));
+/*
+я тут думал stdout вынести, даже пару MESSAGES написал, но мне показалось это черезчур, нет?
+Тем более один раз всего пишется тут...
+*/

@@ -12,6 +12,15 @@ module.exports = (err, req, res, next) => {
   };
 
   if (NODE_ENV !== 'production') { userMessage.stack = err.stack; }
+  /*
+  Тут я подумал что в dev режиме можно иметь err.stack, по этому добавил такую конструкцию,
+  но мне тогда надо в package.json отредактировать dev скрипт на это:
+
+        "dev": "set \"NODE_ENV=dev\" && nodemon app.js",
+
+  вот, жду отмажки, или совета как лучше и стоит вообще реализовывать
+
+  */
 
   res.status(statusCode).send(userMessage);
 
@@ -24,6 +33,7 @@ module.exports = (err, req, res, next) => {
 //     message: statusCode === http2.HTTP_STATUS_INTERNAL_SERVER_ERROR
 //       ? MESSAGES.INTERNAL_SERVER_ERROR
 //       : message,
+//     err.stack,
 //   });
 
 //   next();

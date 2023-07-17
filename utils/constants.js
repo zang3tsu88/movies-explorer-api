@@ -1,4 +1,4 @@
-module.exports = {
+const MESSAGES = {
   EMAIL_ERROR: 'Некорректный email',
   URL_ERROR: 'Некорректный URL адрес',
   PAGE_NOT_FOUND: '  (✖╭╮✖)   Запрашиваемая страница не существует.',
@@ -13,6 +13,15 @@ module.exports = {
   MOVIE_CREATED: 'Фильм успешно создан.',
   MOVIE_DELETED: 'Фильм удален.',
   INTERNAL_SERVER_ERROR: 'На сервере произошла ошибка',
-  MONGOOSE_CONNECTION_SUCCESS: 'Connected to DB!',
-  MONGOOSE_CONNECTION_FAIL: 'DB connection error!',
+  // MONGOOSE_CONNECTION_SUCCESS: 'Connected to DB!',
+  // MONGOOSE_CONNECTION_FAIL: 'DB connection error!',
+};
+
+const MONGOOSE_DUPLICATE_ERROR_CODE = 11000;
+const MONGOOSE_DUPLICATE_ERROR_NAME = 'MongoServerError';
+
+module.exports = {
+  MESSAGES,
+  MONGOOSE_DUPLICATE_ERROR_NAME,
+  MONGOOSE_DUPLICATE_ERROR_CODE,
 };

@@ -5,8 +5,12 @@ const User = require('../models/User');
 const ConflictError = require('../errors/ConflictError');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
-const MESSAGES = require('../utils/constants');
 const { signToken } = require('../utils/jwt');
+const {
+  MESSAGES,
+  MONGOOSE_DUPLICATE_ERROR_NAME,
+  MONGOOSE_DUPLICATE_ERROR_CODE,
+} = require('../utils/constants');
 
 const createUser = (req, res, next) => {
   const { name, email, password } = req.body;
@@ -20,9 +24,13 @@ const createUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.name === 'MongoServerError' && err.code === 11000) { // duplicate key error
+      if (
+        err.name === MONGOOSE_DUPLICATE_ERROR_NAME
+        && err.code === MONGOOSE_DUPLICATE_ERROR_CODE
+      ) {
         return next(new ConflictError(MESSAGES.EMAIL_ALREADY_EXISTS));
       }
+
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new BadRequestError(MESSAGES.INCORRECT_DATA));
       }
@@ -58,12 +66,15 @@ const updateUser = (req, res, next) => {
     .orFail(() => new NotFoundError(MESSAGES.USER_NOT_FOUND))
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err instanceof mongoose.Error.ValidationError) {
-        return next(new BadRequestError(MESSAGES.INCORRECT_DATA));
+      if (
+        err.name === MONGOOSE_DUPLICATE_ERROR_NAME
+        && err.code === MONGOOSE_DUPLICATE_ERROR_CODE
+      ) {
+        return next(new ConflictError(MESSAGES.EMAIL_ALREADY_EXISTS));
       }
 
-      if (err.name === 'MongoServerError' && err.code === 11000) { // duplicate key error
-        return next(new ConflictError(MESSAGES.EMAIL_ALREADY_EXISTS));
+      if (err instanceof mongoose.Error.ValidationError) {
+        return next(new BadRequestError(MESSAGES.INCORRECT_DATA));
       }
 
       return next(err);
