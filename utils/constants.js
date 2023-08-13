@@ -13,8 +13,10 @@ const MESSAGES = {
   MOVIE_CREATED: 'Фильм успешно создан.',
   MOVIE_DELETED: 'Фильм удален.',
   INTERNAL_SERVER_ERROR: 'На сервере произошла ошибка',
-  // MONGOOSE_CONNECTION_SUCCESS: 'Connected to DB!',
-  // MONGOOSE_CONNECTION_FAIL: 'DB connection error!',
+
+  // TODO(zang3tsu88): uncomment or delete based on DB messages in app.js
+  // DB_CONNECTION_SUCCESS: 'Connected to DB!',
+  // DB_CONNECTION_FAIL: 'DB connection error!',
 };
 
 const MONGOOSE_DUPLICATE_ERROR_CODE = 11000;
