@@ -10,8 +10,8 @@ const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 const { PORT_CFG, DB_CFG } = require('./utils/config');
 
-// TODO(zang3tsu88): perhaps replace DB connect messages with constants
-// const MESSAGES = require('./utils/constants');
+// TODO(zang3tsu88): perhaps replace DB connect { MESSAGES } with constants
+// const { MESSAGES } = require('./utils/constants');
 
 const app = express();
 

@@ -14,7 +14,7 @@ const MESSAGES = {
   MOVIE_DELETED: 'Фильм удален.',
   INTERNAL_SERVER_ERROR: 'На сервере произошла ошибка',
 
-  // TODO(zang3tsu88): uncomment or delete based on DB messages in app.js
+  // TODO(zang3tsu88): uncomment or delete based on DB { MESSAGES } in app.js
   // DB_CONNECTION_SUCCESS: 'Connected to DB!',
   // DB_CONNECTION_FAIL: 'DB connection error!',
 };

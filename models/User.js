@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const isEmail = require('validator/lib/isEmail');
 const bcrypt = require('bcrypt');
 const UnauthorizedError = require('../errors/UnauthorizedError');
-const MESSAGES = require('../utils/constants');
+const { MESSAGES } = require('../utils/constants');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -38,5 +38,19 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(email,
       return user;
     });
 };
+
+// TODO(zang3tsu88): replace method after review.
+//
+// https://github.com/zang3tsu88/movies-explorer-api/pull/1#discussion_r1296023732
+//
+// userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
+//   return this.findOne({ email }).select('+password')
+//     .then((user) => {
+//       if (!user || !bcrypt.compareSync(password, user.password)) {
+//         throw new UnauthorizedError(MESSAGES.INCORRECT_EMAIL_OR_PASS);
+//       }
+//       return user;
+//     });
+// };
 
 module.exports = mongoose.model('user', userSchema);

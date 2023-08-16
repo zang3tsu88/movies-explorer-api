@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userController = require('../controllers/users');
 const NotFoundError = require('../errors/NotFoundError');
-const MESSAGES = require('../utils/constants');
+const { MESSAGES } = require('../utils/constants');
 const auth = require('../middlewares/auth');
 const userRouter = require('./users');
 const movieRouter = require('./movies');

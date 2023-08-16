@@ -1,5 +1,5 @@
 const isURL = require('validator/lib/isURL');
-const MESSAGES = require('./constants');
+const { MESSAGES } = require('./constants');
 
 const urlCustomValidation = (value, helpers) => {
   if (isURL(value)) {
