@@ -7,23 +7,13 @@ const { MESSAGES } = require('../utils/constants');
 
 const getMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
-    /* TODO(zang3tsu88): clarify why this orFail and err message is not needed.
-     *
-     * https://github.com/zang3tsu88/movies-explorer-api/pull/1#discussion_r1268546005
-     *
-     * Когда запрос подразумевает поиск нескольких объектов или строк,
-     * этой ошибки быть не может. Отсутствие объектов или строк
-     * в таком случае считается нормальным результатом.
-     * Нужно исправить здесь и в других местах.
-     */
-    .orFail(() => new NotFoundError(MESSAGES.SAVED_MOVIES_NOT_FOUND))
     .then((movie) => res.send(movie))
     .catch(next);
 };
 
 const createMovie = (req, res, next) => {
   Movie.create({ ...req.body, owner: req.user._id })
-    .then(() => res.send({ message: MESSAGES.MOVIE_CREATED }))
+    .then((movie) => res.send(movie))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError(err.message));
